@@ -1,0 +1,12 @@
+<div id="wrapper">
+	<div id="columns">
+		<div ng-repeat="asset in assets" class="pin">
+			<img class="ui fluid image" id="{{asset.properties['file:content'].data}}" src="{{asset.contextParameters.thumbnail.url}}" style="cursor:pointer;"/>
+		</div>
+	</div>
+	<div ng-show="!assets.length">
+		<div id="main-message" class="ui visible message">
+			<p>No asset to display.</p>
+		</div>
+  	</div>
+</div>

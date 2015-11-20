@@ -1,0 +1,19 @@
+<!-- See documentation at http://doc.nuxeo.com/x/HgIz -->
+<package type="addon" name="nuxeo-unify-php" version="@VERSION@">
+  <title>Unify Portfolio Home Pages</title>
+  <description>
+    <p>Unify Portfolio Home Pages</p>
+  </description>
+  <home-page>https://nuxeo.com</home-page>
+  <vendor>Nuxeo</vendor>
+  <installer restart="true" />
+  <uninstaller restart="true" />
+  <nuxeo-validation>nuxeo_certified</nuxeo-validation>
+  <production-state>production_ready</production-state>
+  <supported>true</supported>
+  <platforms>
+    <platform>cap-@DISTRIB_VERSION@</platform>
+  </platforms>
+  <license>All Rights Reserved</license>
+  <license-url></license-url>
+</package>

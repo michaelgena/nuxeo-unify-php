@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<fragment version="1">
+
+  <install>
+    <!-- Unzip the contents of our nuxeo.war into the server -->
+    <unzip from="${bundle.fileName}" to="/" prefix="web">
+      <include>web/nuxeo.war/**</include>
+    </unzip>
+  </install>
+
+	<!-- Make sure user needs to be authenticated first if trying to access the Angular application -->
+  <extension target="web#STD-AUTH-FILTER">
+    <filter-mapping>
+      <filter-name>NuxeoAuthenticationFilter</filter-name>
+      <url-pattern>/front/*</url-pattern>
+      <dispatcher>REQUEST</dispatcher>
+      <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+  </extension>
+
+</fragment>

@@ -1,0 +1,15 @@
+<component name="org.nuxeo.angular.sample.front.authentication">
+  <extension
+    target="org.nuxeo.ecm.platform.ui.web.auth.service.PluggableAuthenticationService"
+    point="startURL">
+
+		<!-- Make sure user is redirected to the requested URL if part of the Angular application -->
+    <startURLPattern>
+      <patterns>
+        <pattern>front</pattern>
+      </patterns>
+    </startURLPattern>
+
+  </extension>
+
+</component>
