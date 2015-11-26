@@ -21,6 +21,7 @@
 
   <modules>
     <module>nuxeo-unify-php-plugin</module>
+    <module>nuxeo-unify-php-operations</module>
   </modules>
 
   <profiles>
@@ -48,6 +49,11 @@
       <dependency>
         <groupId>org.nuxeo.unify.php</groupId>
         <artifactId>nuxeo-unify-php-plugin</artifactId>
+        <version>${nuxeo.unify.php.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.unify.php</groupId>
+        <artifactId>nuxeo-unify-php-operations</artifactId>
         <version>${nuxeo.unify.php.version}</version>
       </dependency>
 
