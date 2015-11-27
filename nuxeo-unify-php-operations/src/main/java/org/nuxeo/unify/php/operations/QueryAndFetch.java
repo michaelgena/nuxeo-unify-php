@@ -76,13 +76,18 @@ public class QueryAndFetch {
         soapResponse = soapConnection.call(createSOAPRequestForPartnerCategories(query), url);
         ArrayList<Category> categories = getPartnerCategories(soapResponse);
         soapConnection.close();
-        //String jsonCategories = "";
+        String jsonResults = "{\"categories\": [";
+        String jsonCategory = "";
         for(Category category : categories){
-        	
-        	logger.info("{\"id\":\""+category.id+"\", \"name\":\""+category.name+"\"}");
+        	if(!jsonCategory.equals("")){
+        		jsonCategory += ", ";
+        	}
+        	jsonCategory += "{\"id\":\""+category.id+"\", \"name\":\""+category.name+"\"}";
         }
-       
-        return new org.nuxeo.ecm.core.api.impl.blob.StringBlob("{\"id\":\""+user.id+"\", \"email\":\""+user.email+"\", \"country\":\""+user.country+"\"}");
+        jsonResults += jsonCategory+"]";
+        jsonResults += ",\"user\": {\"id\":\""+user.id+"\", \"email\":\""+user.email+"\", \"country\":\""+user.country+"\"}";
+        jsonResults += "}";
+        return new org.nuxeo.ecm.core.api.impl.blob.StringBlob(jsonResults);
     }
         
     private SOAPMessage createSOAPRequestForUserCountry(String login) throws Exception {
@@ -137,7 +142,7 @@ public class QueryAndFetch {
          return user;
     }
     
-    private SOAPMessage createSOAPRequestForPartnerCategories(String userId) throws Exception {
+    private static SOAPMessage createSOAPRequestForPartnerCategories(String userId) throws Exception {
         MessageFactory messageFactory = MessageFactory.newInstance();
         SOAPMessage soapMessage = messageFactory.createMessage();
         SOAPPart soapPart = soapMessage.getSOAPPart();
@@ -147,6 +152,7 @@ public class QueryAndFetch {
         // SOAP Envelope
         SOAPEnvelope envelope = soapPart.getEnvelope();
         envelope.addNamespaceDeclaration("ser", serverURI);
+        envelope.addNamespaceDeclaration("xsi", "http://www.w3.org/2001/XMLSchema-instance");
 
         // SOAP Body
         //<ser:getCompanyByUserId soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
@@ -160,15 +166,18 @@ public class QueryAndFetch {
         soapBodyElem0.setAttribute("xmlns:urn", "urn:model.service.entitlement.siemens.com");
         
         SOAPElement soapBodyElem1 = soapBodyElem0.addChildElement("applicationId");
+        
         soapBodyElem1.addTextNode("bolayer");
         soapBodyElem1.setEncodingStyle("http://schemas.xmlsoap.org/soap/encoding");
         SOAPElement soapBodyElem2 = soapBodyElem0.addChildElement("userId");
         soapBodyElem2.addTextNode(userId);
         soapBodyElem2.setEncodingStyle("http://schemas.xmlsoap.org/soap/encoding");
-
+       
         MimeHeaders headers = soapMessage.getMimeHeaders();
-        headers.addHeader("SOAPAction", serverURI  + "getCompanyByUserId");
-
+        headers.addHeader("SOAPAction", serverURI  + "CompanyByUserIdRequest");
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        //soapMessage.writeTo(os);
+      
         soapMessage.saveChanges();
 
         return soapMessage;

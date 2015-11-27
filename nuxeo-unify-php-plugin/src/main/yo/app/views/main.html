@@ -1,10 +1,20 @@
+<p></p>
 <h3 class="ui dividing header">Products & Services A-Z</h3>
-
+<div class="ui action input">
+  <input type="text" ng-model="searchProduct">
+  <button class="ui button">Filter</button>
+</div>
 <table class="ui striped table">
   <thead>
     <tr>
       <th><input type="checkbox" name="example"></th>
-      <th>Product versions</th>
+      <th>
+        <a href="#" ng-click="sortType = 'attributes.product_name'; sortReverse = !sortReverse">
+          Product versions
+          <span ng-show="sortType == 'attributes.product_name' && !sortReverse" class="fa fa-caret-down"></span>
+          <span ng-show="sortType == 'attributes.product_name' && sortReverse" class="fa fa-caret-up"></span>
+        </a>
+      </th>
       <th>General availability</th>
       <th>Order stop</th>
       <th>Order stop for expansions</th>
@@ -13,16 +23,16 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr ng-repeat="product in products | orderBy:sortType:sortReverse | filter:searchProduct">
       <td><input type="checkbox" name="example"></td>
-      <td><a class="header">AC-Win IP V2</a></td>
+      <td><a class="header">{{product.attributes.product_name}}</a></td>
       <td>2008-08-18</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
     </tr>
-    <tr>
+    <!--tr>
       <td><input type="checkbox" name="example"></td>
       <td><a class="header">AP 1120 CorNet-IP V5.1</a></td>
       <td>2008-08-18</td>
@@ -39,6 +49,11 @@
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
-    </tr>
+    </tr-->
   </tbody>
 </table>
+<div ng-show="!products.length">
+  <div id="main-message" class="ui visible message">
+    <p>No products to display.</p>
+  </div>
+</div>
