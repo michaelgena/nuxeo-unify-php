@@ -31,6 +31,7 @@ module.exports = function(config) {
       'bower_components/semantic-ui/dist/semantic.js',
       'bower_components/nuxeo/lib/jquery/nuxeo.js',
       'bower_components/angular-nuxeo/nuxeo.js',
+      'bower_components/angular-toArrayFilter/toArrayFilter.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

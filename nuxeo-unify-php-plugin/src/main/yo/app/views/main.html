@@ -11,8 +11,7 @@
       <th>
         <a href="#" ng-click="sortType = 'attributes.product_name'; sortReverse = !sortReverse">
           Product versions
-          <span ng-show="sortType == 'attributes.product_name' && !sortReverse" class="fa fa-caret-down"></span>
-          <span ng-show="sortType == 'attributes.product_name' && sortReverse" class="fa fa-caret-up"></span>
+          <span ng-show="sortType == 'attributes.product_name'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
         </a>
       </th>
       <th>General availability</th>
@@ -23,33 +22,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr ng-repeat="product in products | orderBy:sortType:sortReverse | filter:searchProduct">
+    <tr ng-repeat="product in products | orderBy:sortType:sortReverse | toArray | filter:searchProduct">
       <td><input type="checkbox" name="example"></td>
-      <td><a class="header">{{product.attributes.product_name}}</a></td>
+      <td><a href="#/product/{{product.attributes.sku}}" class="header">{{product.attributes.product_name}}</a></td>
       <td>2008-08-18</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
       <td>estimated 2008-08-23</td>
     </tr>
-    <!--tr>
-      <td><input type="checkbox" name="example"></td>
-      <td><a class="header">AP 1120 CorNet-IP V5.1</a></td>
-      <td>2008-08-18</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-    </tr>
-    <tr>
-      <td><input type="checkbox" name="example"></td>
-      <td><a class="header">AP 1120 H.323 V5.1</a></td>
-      <td>2008-08-18</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-      <td>estimated 2008-08-23</td>
-    </tr-->
   </tbody>
 </table>
 <div ng-show="!products.length">

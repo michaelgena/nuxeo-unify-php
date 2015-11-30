@@ -1,0 +1,840 @@
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" xmlns:intf="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="urn:model.service.entitlement.siemens.com" xmlns:tns2="urn:model.webservice.entitlement.enterprise.communications.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService">
+<!--
+WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)
+-->
+<wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:model.service.entitlement.siemens.com">
+<import namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService"/>
+<import namespace="urn:model.webservice.entitlement.enterprise.communications.com"/>
+<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<complexType name="Description">
+<sequence>
+<element name="descriptionLong" nillable="true" type="soapenc:string"/>
+<element name="descriptionShort" nillable="true" type="soapenc:string"/>
+<element name="language" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="PartnerCategory">
+<sequence>
+<element name="descriptions" nillable="true" type="impl:ArrayOf_tns1_Description"/>
+<element name="id" nillable="true" type="soapenc:string"/>
+<element name=" name" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="Company">
+<sequence>
+<element name="companyId" nillable="true" type="soapenc:string"/>
+<element name="country" nillable="true" type="soapenc:string"/>
+<element name="debitorNumber" nillable="true" type="soapenc:string"/>
+<element name="ifaNumber" nillable="true" type="soapenc:string"/>
+<element name=" name" nillable="true" type="soapenc:string"/>
+<element name="partnerCategories" nillable="true" type="impl:ArrayOf_tns1_PartnerCategory"/>
+<element name="salesChannel" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="Account">
+<sequence>
+<element name="country" nillable="true" type="soapenc:string"/>
+<element name="department" nillable="true" type="soapenc:string"/>
+<element name="email" nillable="true" type="soapenc:string"/>
+<element name="fax" nillable="true" type="soapenc:string"/>
+<element name="foreignKey" nillable="true" type="soapenc:string"/>
+<element name="gender" nillable="true" type="soapenc:string"/>
+<element name="gid" nillable="true" type="soapenc:string"/>
+<element name="givenName" nillable="true" type="soapenc:string"/>
+<element name="houseIdentifier" nillable="true" type="soapenc:string"/>
+<element name="id" nillable="true" type="soapenc:string"/>
+<element name="jobTitle" nillable="true" type="soapenc:string"/>
+<element name="language" nillable="true" type="soapenc:string"/>
+<element name="localityName" nillable="true" type="soapenc:string"/>
+<element name="login" nillable="true" type="soapenc:string"/>
+<element name="mobile" nillable="true" type="soapenc:string"/>
+<element name="organization" nillable="true" type="soapenc:string"/>
+<element name="pager" nillable="true" type="soapenc:string"/>
+<element name="postalCode" nillable="true" type="soapenc:string"/>
+<element name="roomNumber" nillable="true" type="soapenc:string"/>
+<element name="state" nillable="true" type="soapenc:string"/>
+<element name="street" nillable="true" type="soapenc:string"/>
+<element name="surname" nillable="true" type="soapenc:string"/>
+<element name="telephone" nillable="true" type="soapenc:string"/>
+<element name="title" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="BusinessRole">
+<sequence>
+<element name="categories" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="description" nillable="true" type="soapenc:string"/>
+<element name="id" nillable="true" type="soapenc:string"/>
+<element name=" name" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="AccountsByTimeStamp">
+<sequence>
+<element name="deletedAccounts" nillable="true" type="impl:ArrayOf_tns1_Account"/>
+<element name="disabledAccounts" nillable="true" type="impl:ArrayOf_tns1_Account"/>
+<element name="enabledAccounts" nillable="true" type="impl:ArrayOf_tns1_Account"/>
+<element name="timeStamp" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="ApplicationRole">
+<sequence>
+<element name="description" nillable="true" type="soapenc:string"/>
+<element name="id" nillable="true" type="soapenc:string"/>
+<element name=" name" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="Organization">
+<sequence>
+<element name="applId" nillable="true" type="soapenc:string"/>
+<element name="categoryIds" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="countries" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="id" nillable="true" type="soapenc:string"/>
+<element name=" name" nillable="true" type="soapenc:string"/>
+<element name="salesChannel" nillable="true" type="soapenc:string"/>
+<element name="type" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="CompaniesByTimeStamp">
+<sequence>
+<element name="companies" nillable="true" type="impl:ArrayOf_tns1_Company"/>
+<element name="timeStamp" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="CompanyRelations">
+<sequence>
+<element name="delegateRelationCompanyIds" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="employeeRelationCompanyId" nillable="true" type="soapenc:string"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="SelfRegistrationRequest">
+<sequence>
+<element name="applicationId" nillable="true" type="soapenc:string"/>
+<element name="selfRegisteredUser" nillable="true" type="tns2:SelfRegisteredUser"/>
+</sequence>
+</complexType>
+<complexType name="SelfRegistrationResponse">
+<sequence>
+<element name="errorLevel" nillable="true" type="soapenc:string"/>
+<element name="message" nillable="true" type="soapenc:string"/>
+<element name="resultCode" type="xsd:int"/>
+</sequence>
+</complexType>
+<complexType name="DelegatedCompanyIdsByUserIdRequest">
+<sequence>
+<element name="applicationId" nillable="true" type="soapenc:string"/>
+<element name="relationId" nillable="true" type="soapenc:string"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="DelegatedCompanyIdsByUserIdResponse">
+<sequence>
+<element name="delegatedCompanyIds" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="DelegatedCompanyCollectionByUserIdRequest">
+<sequence>
+<element name="applicationId" nillable="true" type="soapenc:string"/>
+<element name="relationId" nillable="true" type="impl:ArrayOf_soapenc_string"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="CompanyRelation">
+<sequence>
+<element name="companyID" nillable="true" type="soapenc:string"/>
+<element name="relationId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="DelegatedCompanyCollectionByUserIdResponse">
+<sequence>
+<element name="delegatedCompanyRelations" nillable="true" type="impl:ArrayOf_tns1_CompanyRelation"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="CompanyByUserIdRequest">
+<sequence>
+<element name="applicationId" nillable="true" type="soapenc:string"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="CompanyByUserIdResponse">
+<sequence>
+<element name="company" nillable="true" type="tns1:Company"/>
+<element name="userId" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+<complexType name="User">
+<sequence>
+<element name="authKey" nillable="true" type="soapenc:string"/>
+<element name="canInsertInCE" nillable="true" type="soapenc:string"/>
+<element name="ceFailureReason" nillable="true" type="soapenc:string"/>
+<element name="companyName" nillable="true" type="soapenc:string"/>
+<element name="companyOwner" nillable="true" type="soapenc:string"/>
+<element name="companyUAN" nillable="true" type="soapenc:string"/>
+<element name="country" nillable="true" type="soapenc:string"/>
+<element name="dataSource" nillable="true" type="soapenc:string"/>
+<element name="department" nillable="true" type="soapenc:string"/>
+<element name="description" nillable="true" type="soapenc:string"/>
+<element name="employeeCompanyId" nillable="true" type="soapenc:string"/>
+<element name="fax" nillable="true" type="soapenc:string"/>
+<element name="firstNameNational" nillable="true" type="soapenc:string"/>
+<element name="globalOneContactID" nillable="true" type="soapenc:string"/>
+<element name="inactiveUser" type="xsd:boolean"/>
+<element name="insertionResult" nillable="true" type="soapenc:string"/>
+<element name="lastModifiedDate" nillable="true" type="xsd:dateTime"/>
+<element name="lastNameNational" nillable="true" type="soapenc:string"/>
+<element name="lastSyncDate" nillable="true" type="xsd:dateTime"/>
+<element name="lineNumber" type="xsd:int"/>
+<element name="localityName" nillable="true" type="soapenc:string"/>
+<element name="loginName" nillable="true" type="soapenc:string"/>
+<element name="mail" nillable="true" type="soapenc:string"/>
+<element name="mobile" nillable="true" type="soapenc:string"/>
+<element name="partnerFundLogin" nillable="true" type="soapenc:string"/>
+<element name="partnerFundLoginType" nillable="true" type="soapenc:string"/>
+<element name="personalTitle" nillable="true" type="soapenc:string"/>
+<element name="phone" nillable="true" type="soapenc:string"/>
+<element name="postalCode" nillable="true" type="soapenc:string"/>
+<element name="preferredLanguage" nillable="true" type="soapenc:string"/>
+<element name="reasons" nillable="true" type="soapenc:string"/>
+<element name="recordType" nillable="true" type="soapenc:string"/>
+<element name="rspAccess" type="xsd:boolean"/>
+<element name="state" nillable="true" type="soapenc:string"/>
+<element name="street" nillable="true" type="soapenc:string"/>
+<element name="userOperation" nillable="true" type="soapenc:string"/>
+<element name="workStatus" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+</schema>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService">
+<import namespace="urn:model.service.entitlement.siemens.com"/>
+<import namespace="urn:model.webservice.entitlement.enterprise.communications.com"/>
+<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<complexType name="ArrayOf_tns1_Description">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:Description[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_PartnerCategory">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:PartnerCategory[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_Company">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:Company[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="EntitlementServiceException">
+<sequence/>
+</complexType>
+<complexType name="ArrayOf_tns1_Account">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:Account[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_soapenc_string">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="soapenc:string[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_BusinessRole">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:BusinessRole[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_ApplicationRole">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:ApplicationRole[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_Organization">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:Organization[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_CompanyRelation">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:CompanyRelation[]"/>
+</restriction>
+</complexContent>
+</complexType>
+<complexType name="ArrayOf_tns1_User">
+<complexContent>
+<restriction base="soapenc:Array">
+<attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:User[]"/>
+</restriction>
+</complexContent>
+</complexType>
+</schema>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:model.webservice.entitlement.enterprise.communications.com">
+<import namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService"/>
+<import namespace="urn:model.service.entitlement.siemens.com"/>
+<import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+<complexType name="SelfRegisteredUser">
+<sequence>
+<element name="country" nillable="true" type="soapenc:string"/>
+<element name="firstName" nillable="true" type="soapenc:string"/>
+<element name="lastName" nillable="true" type="soapenc:string"/>
+<element name="mail" nillable="true" type="soapenc:string"/>
+<element name="personalTitle" nillable="true" type="soapenc:string"/>
+<element name="preferredLanguage" nillable="true" type="soapenc:string"/>
+<element name="registrationContext" nillable="true" type="soapenc:string"/>
+<element name="telephone" nillable="true" type="soapenc:string"/>
+</sequence>
+</complexType>
+</schema>
+</wsdl:types>
+<wsdl:message name="startUserSelfRegistrationRequest">
+<wsdl:part name="request" type="tns1:SelfRegistrationRequest"/>
+</wsdl:message>
+<wsdl:message name="EntitlementServiceException">
+<wsdl:part name="fault" type="impl:EntitlementServiceException"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByAccountLoginAndApplicationIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="login" type="soapenc:string"/>
+<wsdl:part name="targetApplicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getAccountByLoginResponse">
+<wsdl:part name="getAccountByLoginReturn" type="tns1:Account"/>
+</wsdl:message>
+<wsdl:message name="getCompanyByUserIdRequest">
+<wsdl:part name="request" type="tns1:CompanyByUserIdRequest"/>
+</wsdl:message>
+<wsdl:message name="getPartnerCategoriesResponse">
+<wsdl:part name="getPartnerCategoriesReturn" type="impl:ArrayOf_tns1_PartnerCategory"/>
+</wsdl:message>
+<wsdl:message name="getCompanyByIdResponse">
+<wsdl:part name="getCompanyByIdReturn" type="tns1:Company"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsResponse">
+<wsdl:part name="getOrganizationsReturn" type="impl:ArrayOf_tns1_Organization"/>
+</wsdl:message>
+<wsdl:message name="getDelegatedCompanyIdsByUserIdRequest">
+<wsdl:part name="request" type="tns1:DelegatedCompanyIdsByUserIdRequest"/>
+</wsdl:message>
+<wsdl:message name="getAccountsRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getDelegatedCompanyCollectionByUserIdRequest">
+<wsdl:part name="request" type="tns1:DelegatedCompanyCollectionByUserIdRequest"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationByIdAndApplicationIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="organizationId" type="soapenc:string"/>
+<wsdl:part name="targetApplicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getAccountsByTimeStampRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="timeStamp" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getApplicationRolesByAccountLoginResponse">
+<wsdl:part name="getApplicationRolesByAccountLoginReturn" type="impl:ArrayOf_tns1_ApplicationRole"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByApplicationIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="targetApplicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getApplicationRolesByAccountLoginRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="login" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationByIdAndApplicationIdResponse">
+<wsdl:part name="getOrganizationByIdAndApplicationIdReturn" type="tns1:Organization"/>
+</wsdl:message>
+<wsdl:message name="getCompanyRelationsByUserIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="userId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getBusinessRoleForApplicationRoleIdResponse">
+<wsdl:part name="getBusinessRoleForApplicationRoleIdReturn" type="impl:ArrayOf_tns1_BusinessRole"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByApplicationIdResponse">
+<wsdl:part name="getOrganizationsByApplicationIdReturn" type="impl:ArrayOf_tns1_Organization"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByAccountLoginResponse">
+<wsdl:part name="getOrganizationsByAccountLoginReturn" type="impl:ArrayOf_tns1_Organization"/>
+</wsdl:message>
+<wsdl:message name="getCompanyByIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="companyId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="startUserSelfRegistrationResponse">
+<wsdl:part name="startUserSelfRegistrationReturn" type="tns1:SelfRegistrationResponse"/>
+</wsdl:message>
+<wsdl:message name="getApplicationRolesRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getCompanyByUserIdResponse">
+<wsdl:part name="getCompanyByUserIdReturn" type="tns1:CompanyByUserIdResponse"/>
+</wsdl:message>
+<wsdl:message name="getDelegatedCompanyIdsByUserIdResponse">
+<wsdl:part name="getDelegatedCompanyIdsByUserIdReturn" type="tns1:DelegatedCompanyIdsByUserIdResponse"/>
+</wsdl:message>
+<wsdl:message name="getAccountsResponse">
+<wsdl:part name="getAccountsReturn" type="impl:ArrayOf_tns1_Account"/>
+</wsdl:message>
+<wsdl:message name="getAccountsByTimeStampResponse">
+<wsdl:part name="getAccountsByTimeStampReturn" type="tns1:AccountsByTimeStamp"/>
+</wsdl:message>
+<wsdl:message name="getPartnerCategoriesRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getCompaniesByTimeStampRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="timeStamp" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getDelegatedCompanyCollectionByUserIdResponse">
+<wsdl:part name="getDelegatedCompanyCollectionByUserIdReturn" type="tns1:DelegatedCompanyCollectionByUserIdResponse"/>
+</wsdl:message>
+<wsdl:message name="getCompaniesResponse">
+<wsdl:part name="getCompaniesReturn" type="impl:ArrayOf_tns1_Company"/>
+</wsdl:message>
+<wsdl:message name="getUserByOrganizationResponse">
+<wsdl:part name="getUserByOrganizationReturn" type="impl:ArrayOf_tns1_User"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByAccountLoginRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="login" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationByIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="organizationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getApplicationRolesResponse">
+<wsdl:part name="getApplicationRolesReturn" type="impl:ArrayOf_tns1_ApplicationRole"/>
+</wsdl:message>
+<wsdl:message name="getBusinessRoleForApplicationRoleIdRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="applicationRoleId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getAccountByLoginRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="login" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationByIdResponse">
+<wsdl:part name="getOrganizationByIdReturn" type="tns1:Organization"/>
+</wsdl:message>
+<wsdl:message name="getUserByOrganizationRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+<wsdl:part name="organizationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:message name="getCompaniesByTimeStampResponse">
+<wsdl:part name="getCompaniesByTimeStampReturn" type="tns1:CompaniesByTimeStamp"/>
+</wsdl:message>
+<wsdl:message name="getCompanyRelationsByUserIdResponse">
+<wsdl:part name="getCompanyRelationsByUserIdReturn" type="tns1:CompanyRelations"/>
+</wsdl:message>
+<wsdl:message name="getOrganizationsByAccountLoginAndApplicationIdResponse">
+<wsdl:part name="getOrganizationsByAccountLoginAndApplicationIdReturn" type="impl:ArrayOf_tns1_Organization"/>
+</wsdl:message>
+<wsdl:message name="getCompaniesRequest">
+<wsdl:part name="applicationId" type="soapenc:string"/>
+</wsdl:message>
+<wsdl:portType name="EntitlementServiceImpl">
+<wsdl:operation name="getCompanies" parameterOrder="applicationId">
+<wsdl:input message="impl:getCompaniesRequest" name="getCompaniesRequest"/>
+<wsdl:output message="impl:getCompaniesResponse" name="getCompaniesResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getPartnerCategories" parameterOrder="applicationId">
+<wsdl:input message="impl:getPartnerCategoriesRequest" name="getPartnerCategoriesRequest"/>
+<wsdl:output message="impl:getPartnerCategoriesResponse" name="getPartnerCategoriesResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getAccounts" parameterOrder="applicationId">
+<wsdl:input message="impl:getAccountsRequest" name="getAccountsRequest"/>
+<wsdl:output message="impl:getAccountsResponse" name="getAccountsResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getBusinessRoleForApplicationRoleId" parameterOrder="applicationId applicationRoleId">
+<wsdl:input message="impl:getBusinessRoleForApplicationRoleIdRequest" name="getBusinessRoleForApplicationRoleIdRequest"/>
+<wsdl:output message="impl:getBusinessRoleForApplicationRoleIdResponse" name="getBusinessRoleForApplicationRoleIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getAccountsByTimeStamp" parameterOrder="applicationId timeStamp">
+<wsdl:input message="impl:getAccountsByTimeStampRequest" name="getAccountsByTimeStampRequest"/>
+<wsdl:output message="impl:getAccountsByTimeStampResponse" name="getAccountsByTimeStampResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getAccountByLogin" parameterOrder="applicationId login">
+<wsdl:input message="impl:getAccountByLoginRequest" name="getAccountByLoginRequest"/>
+<wsdl:output message="impl:getAccountByLoginResponse" name="getAccountByLoginResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getApplicationRoles" parameterOrder="applicationId">
+<wsdl:input message="impl:getApplicationRolesRequest" name="getApplicationRolesRequest"/>
+<wsdl:output message="impl:getApplicationRolesResponse" name="getApplicationRolesResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getApplicationRolesByAccountLogin" parameterOrder="applicationId login">
+<wsdl:input message="impl:getApplicationRolesByAccountLoginRequest" name="getApplicationRolesByAccountLoginRequest"/>
+<wsdl:output message="impl:getApplicationRolesByAccountLoginResponse" name="getApplicationRolesByAccountLoginResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizations" parameterOrder="applicationId">
+<wsdl:input message="impl:getOrganizationsRequest" name="getOrganizationsRequest"/>
+<wsdl:output message="impl:getOrganizationsResponse" name="getOrganizationsResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByApplicationId" parameterOrder="applicationId targetApplicationId">
+<wsdl:input message="impl:getOrganizationsByApplicationIdRequest" name="getOrganizationsByApplicationIdRequest"/>
+<wsdl:output message="impl:getOrganizationsByApplicationIdResponse" name="getOrganizationsByApplicationIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationById" parameterOrder="applicationId organizationId">
+<wsdl:input message="impl:getOrganizationByIdRequest" name="getOrganizationByIdRequest"/>
+<wsdl:output message="impl:getOrganizationByIdResponse" name="getOrganizationByIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationByIdAndApplicationId" parameterOrder="applicationId organizationId targetApplicationId">
+<wsdl:input message="impl:getOrganizationByIdAndApplicationIdRequest" name="getOrganizationByIdAndApplicationIdRequest"/>
+<wsdl:output message="impl:getOrganizationByIdAndApplicationIdResponse" name="getOrganizationByIdAndApplicationIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByAccountLogin" parameterOrder="applicationId login">
+<wsdl:input message="impl:getOrganizationsByAccountLoginRequest" name="getOrganizationsByAccountLoginRequest"/>
+<wsdl:output message="impl:getOrganizationsByAccountLoginResponse" name="getOrganizationsByAccountLoginResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByAccountLoginAndApplicationId" parameterOrder="applicationId login targetApplicationId">
+<wsdl:input message="impl:getOrganizationsByAccountLoginAndApplicationIdRequest" name="getOrganizationsByAccountLoginAndApplicationIdRequest"/>
+<wsdl:output message="impl:getOrganizationsByAccountLoginAndApplicationIdResponse" name="getOrganizationsByAccountLoginAndApplicationIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getCompaniesByTimeStamp" parameterOrder="applicationId timeStamp">
+<wsdl:input message="impl:getCompaniesByTimeStampRequest" name="getCompaniesByTimeStampRequest"/>
+<wsdl:output message="impl:getCompaniesByTimeStampResponse" name="getCompaniesByTimeStampResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getCompanyById" parameterOrder="applicationId companyId">
+<wsdl:input message="impl:getCompanyByIdRequest" name="getCompanyByIdRequest"/>
+<wsdl:output message="impl:getCompanyByIdResponse" name="getCompanyByIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getCompanyRelationsByUserId" parameterOrder="applicationId userId">
+<wsdl:input message="impl:getCompanyRelationsByUserIdRequest" name="getCompanyRelationsByUserIdRequest"/>
+<wsdl:output message="impl:getCompanyRelationsByUserIdResponse" name="getCompanyRelationsByUserIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="startUserSelfRegistration" parameterOrder="request">
+<wsdl:input message="impl:startUserSelfRegistrationRequest" name="startUserSelfRegistrationRequest"/>
+<wsdl:output message="impl:startUserSelfRegistrationResponse" name="startUserSelfRegistrationResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getDelegatedCompanyIdsByUserId" parameterOrder="request">
+<wsdl:input message="impl:getDelegatedCompanyIdsByUserIdRequest" name="getDelegatedCompanyIdsByUserIdRequest"/>
+<wsdl:output message="impl:getDelegatedCompanyIdsByUserIdResponse" name="getDelegatedCompanyIdsByUserIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getDelegatedCompanyCollectionByUserId" parameterOrder="request">
+<wsdl:input message="impl:getDelegatedCompanyCollectionByUserIdRequest" name="getDelegatedCompanyCollectionByUserIdRequest"/>
+<wsdl:output message="impl:getDelegatedCompanyCollectionByUserIdResponse" name="getDelegatedCompanyCollectionByUserIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getCompanyByUserId" parameterOrder="request">
+<wsdl:input message="impl:getCompanyByUserIdRequest" name="getCompanyByUserIdRequest"/>
+<wsdl:output message="impl:getCompanyByUserIdResponse" name="getCompanyByUserIdResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+<wsdl:operation name="getUserByOrganization" parameterOrder="applicationId organizationId">
+<wsdl:input message="impl:getUserByOrganizationRequest" name="getUserByOrganizationRequest"/>
+<wsdl:output message="impl:getUserByOrganizationResponse" name="getUserByOrganizationResponse"/>
+<wsdl:fault message="impl:EntitlementServiceException" name="EntitlementServiceException"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="EntitlementServiceSoapBinding" type="impl:EntitlementServiceImpl">
+<wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getCompanies">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getCompaniesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getCompaniesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getPartnerCategories">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getPartnerCategoriesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getPartnerCategoriesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getAccounts">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getAccountsRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getAccountsResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getBusinessRoleForApplicationRoleId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getBusinessRoleForApplicationRoleIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getBusinessRoleForApplicationRoleIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getAccountsByTimeStamp">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getAccountsByTimeStampRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getAccountsByTimeStampResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getAccountByLogin">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getAccountByLoginRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getAccountByLoginResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getApplicationRoles">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getApplicationRolesRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getApplicationRolesResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getApplicationRolesByAccountLogin">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getApplicationRolesByAccountLoginRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getApplicationRolesByAccountLoginResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizations">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationsRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationsResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByApplicationId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationsByApplicationIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationsByApplicationIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationById">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationByIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationByIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationByIdAndApplicationId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationByIdAndApplicationIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationByIdAndApplicationIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByAccountLogin">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationsByAccountLoginRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationsByAccountLoginResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getOrganizationsByAccountLoginAndApplicationId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getOrganizationsByAccountLoginAndApplicationIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getOrganizationsByAccountLoginAndApplicationIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getCompaniesByTimeStamp">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getCompaniesByTimeStampRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getCompaniesByTimeStampResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getCompanyById">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getCompanyByIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getCompanyByIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getCompanyRelationsByUserId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getCompanyRelationsByUserIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getCompanyRelationsByUserIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="startUserSelfRegistration">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="startUserSelfRegistrationRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="startUserSelfRegistrationResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getDelegatedCompanyIdsByUserId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getDelegatedCompanyIdsByUserIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getDelegatedCompanyIdsByUserIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getDelegatedCompanyCollectionByUserId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getDelegatedCompanyCollectionByUserIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getDelegatedCompanyCollectionByUserIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getCompanyByUserId">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getCompanyByUserIdRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getCompanyByUserIdResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+<wsdl:operation name="getUserByOrganization">
+<wsdlsoap:operation soapAction=""/>
+<wsdl:input name="getUserByOrganizationRequest">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.entitlement.siemens.com" use="encoded"/>
+</wsdl:input>
+<wsdl:output name="getUserByOrganizationResponse">
+<wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:output>
+<wsdl:fault name="EntitlementServiceException">
+<wsdlsoap:fault encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" name="EntitlementServiceException" namespace="https://mchp013a.intranet.unify.com/axis/services//EntitlementService" use="encoded"/>
+</wsdl:fault>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="EntitlementServiceImplService">
+<wsdl:port binding="impl:EntitlementServiceSoapBinding" name="EntitlementService">
+<wsdlsoap:address location="https://mchp013a.intranet.siemens-enterprise.com/axis/services//EntitlementService"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

@@ -8,7 +8,7 @@
  * Controller of the frontApp
  */
 angular.module('frontApp')
-  .controller('MainCtrl', function ($scope, nuxeoClient) {
+  .controller('MainCtrl', function ($scope, $cookies, nuxeoClient) {
  //$scope, $routeParams, $sce, $location, nuxeoClient
 
   $scope.products = {};
@@ -20,9 +20,11 @@ angular.module('frontApp')
 
   // Main callback
   function callbackGPA(err, result) {
+    //console.log("result:" +result);
     var json = JSON.parse(result);
     $scope.products = json.products;
     $("#loader").hide("");
+    //console.log("Login:" +$cookies.get("login"));
   }
 
   // Entry point

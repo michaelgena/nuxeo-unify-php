@@ -14,7 +14,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'nuxeo'
+    'nuxeo',
+    'angular-toArrayFilter'
   ])
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
@@ -46,6 +47,11 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
+      })
+      .when('/product/:productId', {
+          templateUrl: 'views/product.html',
+          controller: 'ProductCtrl',
+       	  controllerAs: 'product'
       })
       .when('/list/:query', {
           templateUrl: 'views/list.html',
