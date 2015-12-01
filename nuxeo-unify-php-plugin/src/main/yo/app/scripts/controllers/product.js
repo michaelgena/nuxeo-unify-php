@@ -8,7 +8,7 @@ angular.module('frontApp')
 	$("#loader").hide("");
 	//$('.menu .item').tab();
 
-	$('.menu .item')
+	$('.ui.top.attached.tabular.menu .item')
   .tab({
     cache: false,
     // faking API request
@@ -27,6 +27,8 @@ angular.module('frontApp')
     auto    : true,
     path    : '/'
   });
+
+	$('.ui.bottom.attached.tabular.menu .item').tab();
 
 	//nuxeoClient.operation("AKENEO.GetProduct").execute(callbackGPA);
 });
