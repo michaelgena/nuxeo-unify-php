@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<component name="productid-pageprodiver-contrib" version="1.0.0">
+		<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+		    point="providers">
+		    <genericPageProvider name="QueryForProductDocuments" class="org.nuxeo.unify.php.query.ProductDocumentsPageProvider">
+		        <pattern quoteParameters="true" escapeParameters="true">
+		           SELECT ecm:uuid FROM Product_Version WHERE ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted' AND Akeneo_Object:Akeneo_SKU = ?
+		        </pattern>
+		        <pageSize>1</pageSize>	        
+		    </genericPageProvider>
+		</extension>
+	</component>

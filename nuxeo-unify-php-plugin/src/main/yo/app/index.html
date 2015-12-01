@@ -17,6 +17,12 @@
     <style>
         body { padding:10px; }
     </style>
+    <script type="text/javascript">
+      function download(uid, fileName){
+        url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
+        document.location.href=url;
+      }
+    </script>
   </head>
   <body ng-app="frontApp">
 
@@ -52,6 +58,7 @@
     <script src="bower_components/nuxeo/lib/jquery/nuxeo.js"></script>
     <script src="bower_components/angular-nuxeo/nuxeo.js"></script>
     <script src="bower_components/angular-toArrayFilter/toArrayFilter.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

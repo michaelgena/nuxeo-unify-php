@@ -1,12 +1,24 @@
 'use strict';
 
 angular.module('frontApp')
-	.controller('ProductCtrl', function($scope) {
+	.controller('ProductCtrl', function($scope, $routeParams, nuxeoClient) {
 	//$scope, $routeParams, $sce, $location, nuxeoClient
 	// Init vars
 	$scope.product = {};
+	$scope.documents = {};
+	/*$scope.helpers = {
+	    download: function(uid, fileName) {
+	      url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
+	      document.location.href=url;
+	  }
+	};*/
+
+	$scope.formatDate = function(date){
+        var dateOut = new Date(date);
+        return dateOut;
+  };
+
 	$("#loader").hide("");
-	//$('.menu .item').tab();
 
 	$('.ui.top.attached.tabular.menu .item')
   .tab({
@@ -29,6 +41,17 @@ angular.module('frontApp')
   });
 
 	$('.ui.bottom.attached.tabular.menu .item').tab();
+	//query/QueryForProductDocuments?queryParams=515258
 
-	//nuxeoClient.operation("AKENEO.GetProduct").execute(callbackGPA);
+	// Main callbacks
+	function callbackLists(lists) {
+		$scope.documents = lists.entries;
+		console.log(lists.entries);
+	}
+
+	function errorLists(err) {
+		console.log('Error while fetching lists of files: ' + err);
+	}
+	nuxeoClient.request('query/QueryForProductDocuments?queryParams='+$routeParams.pid).schema('file').get().then(callbackLists, errorLists);
+
 });
