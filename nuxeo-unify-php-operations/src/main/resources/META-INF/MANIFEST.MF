@@ -11,5 +11,6 @@ Nuxeo-Component: OSGI-INF/extensions/org.nuxeo.unify.php.operations.Qu
  eryAndFetch.xml,OSGI-INF/extensions/org.nuxeo.unify.php.operations.Qu
  eryAndFetchAkeneo.xml,OSGI-INF/extensions/org.nuxeo.unify.php.operati
  ons.QueryAndFetchNuxeo.xml,OSGI-INF/extensions/productid-pageprovider
- -contrib.xml
+ -contrib.xml,OSGI-INF/extensions/generaldocumentation-pageprovider-co
+ ntrib.xml,OSGI-INF/extensions/unify-computed-group-contrib.xml
 

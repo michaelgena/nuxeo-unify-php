@@ -50,8 +50,18 @@ angular.module('frontApp')
 	}
 
 	function errorLists(err) {
-		console.log('Error while fetching lists of files: ' + err);
+		console.log('Error while fetching lists of documents: ' + err);
 	}
-	nuxeoClient.request('query/QueryForProductDocuments?queryParams='+$routeParams.pid).schema('file').get().then(callbackLists, errorLists);
 
+	// Main callback
+  function callbackAkeneo(result) {
+    var json = JSON.parse(result);
+    $scope.product = json.products[0];
+		console.log($scope.product.attributes);
+    $("#loader").hide("");
+    //console.log("Login:" +$cookies.get("login"));
+  }
+
+	nuxeoClient.request('query/QueryForProductDocuments?queryParams='+$routeParams.pid).schema('file').get().then(callbackLists, errorLists);
+	nuxeoClient.operation("AKENEO.QueryAndFetch").param("query", $routeParams.pid).execute().then(callbackAkeneo);
 });

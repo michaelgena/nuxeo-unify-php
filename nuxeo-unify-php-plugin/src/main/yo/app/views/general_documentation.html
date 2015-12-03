@@ -1,0 +1,34 @@
+<p></p>
+<h3 class="ui dividing header">General Documentation</h3>
+<div class="ui action input">
+  <input type="text" ng-model="searchDocument">
+  <button class="ui button">Filter</button>
+</div>
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>
+        <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+          Name
+          <span ng-show="sortType == 'title'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+        </a>
+      </th>
+      <th>Date</th>
+      <th>Languages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['title'] | toArray | filter:searchDocument">
+      <td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
+      <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+      <td>
+        <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['translation_document:Language']}}</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div ng-show="!documents.length">
+  <div id="main-message" class="ui visible message">
+    <p>No documents to display.</p>
+  </div>
+</div>

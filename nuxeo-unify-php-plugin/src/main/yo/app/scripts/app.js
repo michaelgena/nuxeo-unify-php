@@ -15,20 +15,17 @@ angular
     'ngRoute',
     'ngSanitize',
     'nuxeo',
-    'angular-toArrayFilter',
-    'angular.filter'
+    'angular-toArrayFilter'
   ])
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
         // Comment lines below to use prod instance
-        //localhost token 3b70ecfe-e9cb-4cc8-8f3b-ed4ecc16628c
-        //mchp207a token 9c4d6a63-6c66-496a-9c8a-43cf2172db53
-        baseURL: 'http://localhost:8080/nuxeo',
+        /*baseURL: 'http://localhost:8080/nuxeo',
         'auth': {
           'method':'basic',
           'username':'Administrator',
           'password':'Administrator'
-        }
+        }*/
   		});
       // fetch all schemas
       client.schema('*');
@@ -53,6 +50,11 @@ angular
           templateUrl: 'views/product.html',
           controller: 'ProductCtrl',
        	  controllerAs: 'product'
+      })
+      .when('/general_documentation', {
+          templateUrl: 'views/general_documentation.html',
+          controller: 'GeneralDocumentationCtrl',
+       	  controllerAs: 'general_documentation'
       })
       .when('/list/:query', {
           templateUrl: 'views/list.html',

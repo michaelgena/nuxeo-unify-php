@@ -13,13 +13,13 @@ angular.module('frontApp')
 
   $scope.products = {};
 
-  $scope.sortType     = 'attributes.product_name'; // set the default sort type
+  $scope.sortType     = 'attributes.product_version_name'; // set the default sort type
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchProduct   = '';     // set the default search/filter term
 
 
   // Main callback
-  function callbackGPA(err, result) {
+  function callbackGPA(result) {
     //console.log("result:" +result);
     var json = JSON.parse(result);
     $scope.products = json.products;
@@ -29,5 +29,5 @@ angular.module('frontApp')
 
   // Entry point
   //nuxeoClient.operation("GPA.QueryAndFetch").param("query", "Z001KYJF").execute(callbackGPA);
-  nuxeoClient.operation("AKENEO.QueryAndFetch").execute(callbackGPA);
+  nuxeoClient.operation("AKENEO.QueryAndFetch").param("query", "").execute().then(callbackGPA);
 });

@@ -1,10 +1,10 @@
 <div class="ui top attached tabular menu">
-  <a class="active item" data-tab="first">AC-Win IP V2</a>
+  <a class="active item" data-tab="first">{{product.attributes.product_version_name}}</a>
 	<a class="item" data-tab="second">Documents</a>
 	<a class="item" data-tab="third">FAQs</a>
 </div>
 <div class="ui active bottom attached active tab segment" data-tab="first">
-	<img class="ui small left floated image" src="https://enterprise-businessarea.unify.com/ProductHomepages/~/media/1193B48298CD4B0F86E96DBBA24D352D.ashx">
+	<img class="ui small left floated image" src="{{product.attributes.main_picture}}">
 	<p>he enhanced attendant console AC-Win IP V2 is a PC-based application supported by the Windows Vista Enterprise 32Bit Service Pack 1 and Windows Vista Business 32Bit Service Pack 1 operating systems and permits convenient call switching.
 AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ IP V2). The CD supplied with the product contains both versions. Users must select one of the versions during installation.</p>
 	<div class="ui grid">
@@ -44,30 +44,6 @@ AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ 
 	  <div class="ui bottom attached tab segment" data-tab="marketing">Marketing</div>
 	  <div class="ui bottom attached tab segment" data-tab="enabling">Enabling</div>
 	  <div class="ui bottom attached active tab segment" data-tab="presales">
-
-      <!--table class="ui striped table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Date</th>
-            <th>Langages</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="doc in documents">
-            <td>{{doc.title}}</td>
-            <td><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></td>
-            <td><a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);"><div class="ui button">Download</div></a></td>
-          </tr>
-        </tbody>
-      </table>
-      <div ng-show="!documents.length">
-        <div id="main-message" class="ui visible message">
-          <p>No documents to display.</p>
-        </div>
-      </div-->
-
-
       <table class="ui striped table">
         <thead>
           <tr>
@@ -91,7 +67,6 @@ AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ 
           <p>No documents to display.</p>
         </div>
       </div>
-
     </div>
 		<div class="ui bottom attached tab segment" data-tab="evaluate">Evaluate</div>
 		<div class="ui bottom attached tab segment" data-tab="design">Design</div>

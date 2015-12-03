@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<component
+    name="org.nuxeo.unify.management.security.computer.group.contribution"
+    version="1.0">
+    <extension point="computer"
+        target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl">
+        <groupComputer name="PartnerCategoriesGroupComputer">
+            <computer>org.nuxeo.unify.computed.group.PartnerCategoriesGroupComputer
+            </computer>
+        </groupComputer>
+    </extension>
+    <extension point="computerChain"
+        target="org.nuxeo.ecm.platform.computedgroups.ComputedGroupsServiceImpl">
+        <groupComputerChain append="true">
+            <computers>
+                <computer>PartnerCategoriesGroupComputer</computer>
+            </computers>
+        </groupComputerChain>
+    </extension>
+</component>
