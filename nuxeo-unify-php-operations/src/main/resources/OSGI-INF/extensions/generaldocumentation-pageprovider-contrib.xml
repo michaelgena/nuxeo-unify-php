@@ -4,10 +4,10 @@
 	    point="providers">
 	    <coreQueryPageProvider name="QueryForGeneralDocumentations">
 	        <pattern quoteParameters="true" escapeParameters="true">
-	           SELECT * FROM Translation_Document WHERE ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted' AND Akeneo_Object:Akeneo_SKU is null
+	           SELECT * FROM Document WHERE (ecm:primaryType='Regular_Document' or ecm:primaryType='Translation_Document') AND ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted' AND Akeneo_Object:Akeneo_SKU is null
 	        </pattern>
 	        <sort ascending="true" column="dc:title"/>
-	        <pageSize>10000</pageSize>
+	        <pageSize>1000</pageSize>
 	    </coreQueryPageProvider>
 	</extension>
 </component>

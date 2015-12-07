@@ -40,12 +40,4 @@ public class PartnerCategoriesGroupComputer extends AbstractGroupComputer{
 		return null;
 	}
 
-	public static void main(String args[]) throws Exception {
-		//<gid xsi:type="soapenc:string">Z001KYJF</gid>
-		EntitlementHelper entitlement = new EntitlementHelper();
-		List<String> result = entitlement.getCategoriesForUser("Z001KYJF");
-		for(String res : result){
-			System.out.println(res);
-		}
-	}
 }

@@ -57,7 +57,7 @@ AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ 
             <td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
             <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
             <td>
-              <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['translation_document:Language']}}</a>
+              <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['Document_Attributes:Language']}}</a>
             </td>
           </tr>
         </tbody>

@@ -20,12 +20,13 @@ angular
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
         // Comment lines below to use prod instance
-        /*baseURL: 'http://localhost:8080/nuxeo',
+        //Z001KYJF
+        baseURL: 'http://localhost:8080/nuxeo',
         'auth': {
           'method':'basic',
           'username':'Administrator',
           'password':'Administrator'
-        }*/
+        }
   		});
       // fetch all schemas
       client.schema('*');
@@ -51,15 +52,15 @@ angular
           controller: 'ProductCtrl',
        	  controllerAs: 'product'
       })
-      .when('/general_documentation', {
-          templateUrl: 'views/general_documentation.html',
+      .when('/generaldocumentation', {
+          templateUrl: 'views/generaldocumentation.html',
           controller: 'GeneralDocumentationCtrl',
-       	  controllerAs: 'general_documentation'
+       	  controllerAs: 'generaldocumentation'
       })
-      .when('/list/:query', {
-          templateUrl: 'views/list.html',
-          controller: 'ListCtrl',
-       	  controllerAs: 'list'
+      .when('/salescirculars', {
+          templateUrl: 'views/salescirculars.html',
+          controller: 'SalesCircularsCtrl',
+       	  controllerAs: 'salescirculars'
       })
       .otherwise({
         redirectTo: '/'

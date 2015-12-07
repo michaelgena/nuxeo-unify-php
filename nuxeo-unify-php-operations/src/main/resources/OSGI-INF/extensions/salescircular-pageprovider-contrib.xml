@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<component name="salescircular-pageprodiver-contrib" version="1.0.0">
+		<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+		    point="providers">
+		    <coreQueryPageProvider name="QueryForSalesCircularDocuments">
+		        <pattern quoteParameters="true" escapeParameters="true">
+		           SELECT * FROM Document WHERE (ecm:primaryType='Regular_Document' or ecm:primaryType='Translation_Document') AND ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted' AND Document_Attributes:Document_Category LIKE ?
+		        </pattern>
+		        <pageSize>1000</pageSize>	        
+		    </coreQueryPageProvider>
+		</extension>
+	</component>
