@@ -71,7 +71,6 @@ angular
       });
   }).filter('groupBy', ['$parse', function ($parse) {
     return function (list, group_by) {
-        console.log(group_by);
         var filtered = [];
         var prev_item = null;
         var group_changed = false;

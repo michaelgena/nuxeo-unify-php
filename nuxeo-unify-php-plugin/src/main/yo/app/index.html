@@ -22,6 +22,24 @@
         url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
         document.location.href=url;
       }
+
+      function showHide(groupId){
+        $('td[group-id="'+groupId+'"]').each(function() {
+          if($(this).is(':visible')){
+            if($(this).children("a[class='ng-hide']").length == 0){
+              if($(this).children("a").children("i[class='dropdown icon']").length>0){
+                $(this).children("a").children("i[class='dropdown icon']").removeClass("dropdown icon").addClass("caret right icon");
+              }else{
+                $(this).children("a").children("i[class='caret right icon']").removeClass("caret right icon").addClass("dropdown icon");
+              }
+            }else{
+              $(this).fadeOut('fast');
+            }
+          }else {
+            $(this).fadeIn('fast');
+          }
+        });
+      }
     </script>
   </head>
   <body ng-app="frontApp">

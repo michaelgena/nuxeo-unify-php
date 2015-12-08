@@ -23,6 +23,7 @@ angular.module('frontApp')
     $("#loader").hide("");
   }
 
+
   // Entry point
   nuxeoClient.request('query/QueryForSearchProducts').get().then(callback);
 });

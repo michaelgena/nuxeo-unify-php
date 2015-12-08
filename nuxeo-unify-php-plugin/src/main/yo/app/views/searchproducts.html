@@ -17,7 +17,7 @@
   </thead>
   <tbody>
     <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Akeneo_Object:Group_Id\']'] | toArray | filter:searchDocument">
-      <td><span ng-hide="doc.group_by_CHANGED">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#">{{doc.title}}</a></td>
+      <td group-id="{{doc.properties['Akeneo_Object:Group_Id']}}"><a ng:href="javascript:showHide('{{doc.properties['Akeneo_Object:Group_Id']}}')" ng-show="doc.group_by_CHANGED"><i class="dropdown icon"></i></a><span ng-hide="doc.group_by_CHANGED"><span style="padding-left:40px"></span></span><a href="#/product/{{doc.properties['Akeneo_Object:Akeneo_SKU']}}">{{doc.title}}</a></td>
     </tr>
   </tbody>
 </table>
