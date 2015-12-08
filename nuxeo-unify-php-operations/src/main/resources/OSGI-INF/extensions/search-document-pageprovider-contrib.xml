@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="search-documentation-pageprodiver-contrib" version="1.0.0">
+	<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+	    point="providers">
+	    <coreQueryPageProvider name="QueryForSearchDocuments">
+	        <pattern quoteParameters="true" escapeParameters="true">
+	           SELECT * FROM Document WHERE (ecm:primaryType='Regular_Document' or ecm:primaryType='Translation_Document') AND ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted' AND Akeneo_Object:Akeneo_SKU IS NOT null
+	        </pattern>
+	        <sort ascending="true" column="dc:title"/>
+	        <pageSize>1000</pageSize>
+	    </coreQueryPageProvider>
+	</extension>
+</component>

@@ -14,5 +14,6 @@ Nuxeo-Component: OSGI-INF/extensions/org.nuxeo.unify.php.operations.Qu
  -contrib.xml,OSGI-INF/extensions/generaldocumentation-pageprovider-co
  ntrib.xml,OSGI-INF/extensions/unify-computed-group-contrib.xml,OSGI-I
  NF/extensions/salescircular-pageprovider-contrib.xml,OSGI-INF/extensi
- ons/search-product-pageprovider-contrib.xml
+ ons/search-product-pageprovider-contrib.xml,OSGI-INF/search-document-
+ pageprovider-contrib.xml
 
