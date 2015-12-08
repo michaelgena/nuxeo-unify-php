@@ -1,0 +1,28 @@
+<p></p>
+<h3 class="ui dividing header">Products</h3>
+<div class="ui action input">
+  <input type="text" ng-model="searchDocument">
+  <button class="ui button">Filter</button>
+</div>
+<table class="ui striped table">
+  <thead>
+    <tr>
+      <th>
+        <a href="#" ng-click="sortType = 'title'; sortReverse = !sortReverse">
+          Result
+          <span ng-show="sortType == 'title'" class="fa" ng-class="sortReverse ? 'fa-caret-up' : 'fa-caret-down'"></span>
+        </a>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Akeneo_Object:Group_Id\']'] | toArray | filter:searchDocument">
+      <td><span ng-hide="doc.group_by_CHANGED">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="#">{{doc.title}}</a></td>
+    </tr>
+  </tbody>
+</table>
+<div ng-show="!documents.length">
+  <div id="main-message" class="ui visible message">
+    <p>No match found for your query.</p>
+  </div>
+</div>

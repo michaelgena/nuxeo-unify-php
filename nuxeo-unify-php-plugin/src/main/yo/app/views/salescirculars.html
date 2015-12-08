@@ -19,7 +19,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="doc in documentsRelease  | orderBy:'title' | groupBy:[properties['Document_Attributes:Group_Id']]">
+			<tr ng-repeat="doc in documentsRelease  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']']">
 				<td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
 				<td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
 				<td>
@@ -45,7 +45,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="doc in documentsPush  | orderBy:'title' | groupBy:['title']">
+			<tr ng-repeat="doc in documentsPush  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']']">
 				<td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
 				<td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
 				<td>
@@ -70,7 +70,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr ng-repeat="doc in documentsPhaseOut  | orderBy:'title' | groupBy:['title']">
+			<tr ng-repeat="doc in documentsPhaseOut  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']']">
 				<td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
 				<td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
 				<td>

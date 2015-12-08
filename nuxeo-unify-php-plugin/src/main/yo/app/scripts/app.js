@@ -20,7 +20,6 @@ angular
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
         // Comment lines below to use prod instance
-        //Z001KYJF
         baseURL: 'http://localhost:8080/nuxeo',
         'auth': {
           'method':'basic',
@@ -62,12 +61,17 @@ angular
           controller: 'SalesCircularsCtrl',
        	  controllerAs: 'salescirculars'
       })
+      .when('/searchproducts', {
+          templateUrl: 'views/searchproducts.html',
+          controller: 'SearchProductsCtrl',
+       	  controllerAs: 'searchproducts'
+      })
       .otherwise({
         redirectTo: '/'
       });
   }).filter('groupBy', ['$parse', function ($parse) {
     return function (list, group_by) {
-
+        console.log(group_by);
         var filtered = [];
         var prev_item = null;
         var group_changed = false;

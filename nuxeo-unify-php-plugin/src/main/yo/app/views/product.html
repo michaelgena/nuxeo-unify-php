@@ -53,11 +53,11 @@ AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ 
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['title']">
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']']">
             <td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
             <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
             <td>
-              <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['Document_Attributes:Language']}}</a>
+              <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['translation_document:Language']}}</a>
             </td>
           </tr>
         </tbody>

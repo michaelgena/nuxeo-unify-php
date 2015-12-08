@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<component name="search-product-pageprodiver-contrib" version="1.0.0">
+		<extension target="org.nuxeo.ecm.platform.query.api.PageProviderService"
+		    point="providers">
+		    <coreQueryPageProvider name="QueryForSearchProducts">
+		        <pattern quoteParameters="true" escapeParameters="true">
+		           SELECT * FROM Document WHERE (ecm:primaryType='Product' or ecm:primaryType='Product_Version') AND ecm:isCheckedInVersion = 0 AND ecm:currentLifeCycleState != 'deleted'
+		        </pattern>
+		        <pageSize>1000</pageSize>	
+		        <sort column="dc:title" ascending="true"/>        
+		    </coreQueryPageProvider>
+		</extension>
+	</component>
