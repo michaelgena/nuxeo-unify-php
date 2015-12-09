@@ -4,12 +4,17 @@
 	<a class="item" data-tab="third">FAQs</a>
 </div>
 <div class="ui active bottom attached active tab segment" data-tab="first">
+  <div class="ui mini images" style="text-align: right;"><a ng-href="javascript:switchLanguage('de_DE')"><img id="de_DE" class="disabled ui mini image" style="cursor:pointer" src="/images/flag_germany.png"/></a><a href="javascript:switchLanguage('en_US')"><img id="en_US" class="ui mini image" style="cursor:pointer" src="/images/flag_great_britain.png"/></a></div>
 	<img class="ui small left floated image" src="{{product.attributes.main_picture}}">
-	<p>he enhanced attendant console AC-Win IP V2 is a PC-based application supported by the Windows Vista Enterprise 32Bit Service Pack 1 and Windows Vista Business 32Bit Service Pack 1 operating systems and permits convenient call switching.
-AC-Win IP V2 can be used with two (AC-Win 2Q IP V2) or twelve queues (AC-Win MQ IP V2). The CD supplied with the product contains both versions. Users must select one of the versions during installation.</p>
-	<div class="ui grid">
+  <div language="en_US" ng-bind-html="renderHTML(product.attributes.version_description[''].en_US)"></div>
+  <div language="de_DE" style="display:none;" ng-bind-html="renderHTML(product.attributes.version_description[''].de_DE)"></div>
+  <p></p>
+  <p></p>
+  <div class="ui grid">
 			<div class="six wide column">
 				<h3 class="ui header">Key facts</h3>
+        <div language="en_US" ng-bind-html="renderHTML(product.attributes.key_facts[''].en_US)"></div>
+        <div language="de_DE" style="display:none;" ng-bind-html="renderHTML(product.attributes.key_facts[''].de_DE)"></div>
 			</div>
 			<div class="three wide column">
 		  	<h3 class="ui header">Links</h3>

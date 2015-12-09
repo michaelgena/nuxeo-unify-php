@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('frontApp')
-	.controller('ProductCtrl', function($scope, $routeParams, nuxeoClient) {
+	.controller('ProductCtrl', function($sce, $scope, $routeParams, nuxeoClient) {
 	//$scope, $routeParams, $sce, $location, nuxeoClient
 	// Init vars
 	$scope.product = {};
@@ -14,8 +14,13 @@ angular.module('frontApp')
 	};*/
 
 	$scope.formatDate = function(date){
-        var dateOut = new Date(date);
-        return dateOut;
+  	var dateOut = new Date(date);
+    return dateOut;
+  };
+
+	$scope.renderHTML = function(html_code){
+    var decoded = angular.element('<textarea />').html(html_code).text().replace("<br>","");
+    return $sce.trustAsHtml(decoded);
   };
 
 	$("#loader").hide("");
@@ -46,7 +51,7 @@ angular.module('frontApp')
 	// Main callbacks
 	function callbackLists(lists) {
 		$scope.documents = lists.entries;
-		console.log(lists.entries);
+		//console.log(lists.entries);
 	}
 
 	function errorLists(err) {
@@ -57,9 +62,8 @@ angular.module('frontApp')
   function callbackAkeneo(result) {
     var json = JSON.parse(result);
     $scope.product = json.products[0];
-		console.log($scope.product.attributes);
+		//console.log($scope.product.attributes.version_description[""].en_US);
     $("#loader").hide("");
-    //console.log("Login:" +$cookies.get("login"));
   }
 
 	nuxeoClient.request('query/QueryForProductDocuments?queryParams='+$routeParams.pid).schema('file').get().then(callbackLists, errorLists);

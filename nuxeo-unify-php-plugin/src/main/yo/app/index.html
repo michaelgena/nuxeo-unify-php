@@ -40,6 +40,28 @@
           }
         });
       }
+
+      function switchLanguage(language){
+    		$('div[language]').each(function() {
+    				$(this).hide();
+    		});
+    		$('div[language="'+language+'"]').each(function() {
+    				$(this).show();
+    		});
+
+        $("img[class='ui mini image']").each(function(){
+          if($(this).attr("id") != language){
+            $(this).removeClass("ui mini image").addClass("disabled ui mini image");
+          }
+        });
+
+        $("img[class='disabled ui mini image']").each(function(){
+          if($(this).attr("id") == language){
+            $(this).removeClass("disabled");
+          }
+        });
+
+    	}
     </script>
   </head>
   <body ng-app="frontApp">
