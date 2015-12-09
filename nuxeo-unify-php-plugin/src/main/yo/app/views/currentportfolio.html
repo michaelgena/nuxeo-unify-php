@@ -1,0 +1,14 @@
+<p></p>
+<table class="ui striped table">
+  <tbody>
+    <tr ng-repeat="doc in products  | orderBy:'title' | groupBy:['properties[\'Akeneo_Object:Product_Title\']']">
+      <td style="width:100px;white-space:nowrap;"><span ng-show="doc.group_by_CHANGED">{{doc.properties["Akeneo_Object:Product_Title"]}}</span></td>
+      <td class="left aligned"><a n-href="#/product/{{doc.properties["Akeneo_Object:Akeneo_SKU"]}}">{{doc.title}}</a></td>
+    </tr>
+  </tbody>
+</table>
+<div ng-show="!products.length">
+  <div id="main-message" class="ui visible message">
+    <p>No match found for your query.</p>
+  </div>
+</div>
