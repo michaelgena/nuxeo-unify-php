@@ -20,12 +20,12 @@ angular
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
         // Comment lines below to use prod instance
-        /*baseURL: 'http://localhost:8080/nuxeo',
+        baseURL: 'http://localhost:8080/nuxeo',
         'auth': {
           'method':'basic',
           'username':'Administrator',
           'password':'Administrator'
-        }*/
+        }
   		});
       // fetch all schemas
       client.schema('*');
