@@ -39,6 +39,12 @@
         <version>${nuxeo.unify.php.version}</version>
         <type>zip</type>
       </dependency>
+      <dependency>
+        <groupId>org.nuxeo.unify.php</groupId>
+        <artifactId>nuxeo-unify-php-mp</artifactId>
+        <version>${nuxeo.unify.php.version}</version>
+        <type>zip</type>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

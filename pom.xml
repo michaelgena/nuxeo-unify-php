@@ -56,7 +56,6 @@
         <artifactId>nuxeo-unify-php-operations</artifactId>
         <version>${nuxeo.unify.php.version}</version>
       </dependency>
-
     </dependencies>
   </dependencyManagement>
 

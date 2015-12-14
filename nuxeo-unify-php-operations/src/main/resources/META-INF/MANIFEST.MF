@@ -17,5 +17,6 @@ Nuxeo-Component: OSGI-INF/extensions/org.nuxeo.unify.php.operations.Qu
  ons/search-product-pageprovider-contrib.xml,OSGI-INF/search-document-
  pageprovider-contrib.xml,OSGI-INF/extensions/search-product-family-pa
  geprovider-contrib.xml,OSGI-INF/extensions/search-product-family-page
- provider-contrib.xml
+ provider-contrib.xml,OSGI-INF/extensions/subscription-pageprovider-co
+ ntrib.xml
 

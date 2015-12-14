@@ -1,0 +1,27 @@
+<p></p>
+<h3 class="ui dividing header">My subscriptions</h3>
+<table class="ui striped table">
+	<thead>
+		<tr>
+			<th>Product</th>
+			<th>Scope</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="sub in subscriptions  | orderBy:'title'">
+			<td>{{sub.properties["subscription:document_id"]}}</td>
+			<td>{{sub.properties["subscription:scope"]}}</td>
+			<td>
+        <button class="ui button" ng-click="changeScope()">Change scope</button>
+        &nbsp;&nbsp;&nbsp;
+        <button id="subscription" class="ui disabled button" ng-click="unsubscribe('{{sub.properties["subscription:document_id"]}}')">Unsubscribe</button>
+			</td>
+		</tr>
+	</tbody>
+</table>
+<div ng-show="!subscriptions.length">
+	<div id="main-message" class="ui visible message">
+		<p>No subscriptions.</p>
+	</div>
+</div>

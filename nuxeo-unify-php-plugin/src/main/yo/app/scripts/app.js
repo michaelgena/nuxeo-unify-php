@@ -71,6 +71,11 @@ angular
           controller: 'CurrentPortfolioCtrl',
        	  controllerAs: 'currentportfolio'
       })
+      .when('/subscriptions', {
+          templateUrl: 'views/subscriptions.html',
+          controller: 'SubscriptionsCtrl',
+       	  controllerAs: 'subscriptions'
+      })
       .otherwise({
         redirectTo: '/'
       });

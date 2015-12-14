@@ -19,6 +19,7 @@ angular.module('frontApp')
   $scope.selectedAll = false;
 
   $scope.checkAll = function () {
+       $("#subscription").html("Subscribe for document change notification").removeClass("positive");
        if ($scope.selectedAll) {
           $scope.selectedAll = true;
           $("#subscription").removeClass("disabled");
@@ -31,19 +32,30 @@ angular.module('frontApp')
        });
    };
 
-     $scope.check = function () {
-          var hasAtLeastOneChecked = false;
-          angular.forEach($scope.products, function (product) {
-              if (product.selected) {
-                hasAtLeastOneChecked = true;
-              }
-          });
-          if (hasAtLeastOneChecked) {
-             $("#subscription").removeClass("disabled");
-          } else {
-             $("#subscription").addClass("disabled");
-          }          
-      };
+   $scope.check = function () {
+        $("#subscription").html("Subscribe for document change notification").removeClass;
+        var hasAtLeastOneChecked = false;
+        angular.forEach($scope.products, function (product) {
+            if (product.selected) {
+              hasAtLeastOneChecked = true;
+            }
+        });
+        if (hasAtLeastOneChecked) {
+           $("#subscription").removeClass("disabled");
+        } else {
+           $("#subscription").addClass("disabled");
+        }
+    };
+
+    $scope.subscribe = function () {
+        angular.forEach($scope.products, function (product) {
+            if (product.selected) {
+              console.log(product.attributes.sku);
+              //Call the REST API here
+              $("#subscription").html("Subscribed").addClass("positive");
+            }
+        });
+    };
 
   // Main callback
   function callbackGPA(result) {
