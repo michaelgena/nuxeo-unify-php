@@ -54,7 +54,7 @@
           <tr>
             <th>Name</th>
             <th>Date</th>
-            <th>Langages</th>
+            <th>Langages - Versions</th>
           </tr>
         </thead>
         <tbody>
@@ -62,7 +62,10 @@
             <td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
             <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
             <td>
-              <a ng:href="javascript:download('{{doc.uid}}', '{{doc.properties['file:filename']}}');void(0);">{{doc.properties['translation_document:Language']}}</a>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);"><i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i><i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i></a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);"><i title="pdf" class="file pdf outline icon"></i></a>
             </td>
           </tr>
         </tbody>

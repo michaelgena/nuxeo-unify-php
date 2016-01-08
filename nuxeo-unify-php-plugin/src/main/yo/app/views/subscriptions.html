@@ -1,21 +1,25 @@
 <p></p>
-<h3 class="ui dividing header">My subscriptions</h3>
+<h3 class="ui dividing header">My notification subscriptions</h3>
 <table class="ui striped table">
 	<thead>
 		<tr>
 			<th>Product</th>
-			<th>Scope</th>
+			<!--th>Scope</th-->
 			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="sub in subscriptions  | orderBy:'title'">
-			<td>{{sub.properties["subscription:document_id"]}}</td>
-			<td>{{sub.properties["subscription:scope"]}}</td>
+			<td>{{sub.title}}</td>
+			<!--td>
+				{{sub.properties['subscription:scope']}}
+				<select id="scopevalue-{{sub.uid}}" class="ui dropdown" ng-model="sub.properties['subscription:scope']" ng-init="notificationScope.properties['id']='sales_documentation'" ng-options="notificationScopes.properties['id'] as notificationScope.properties['label'] for notificationScope in notificationScopes" ng-change="changeScope(sub.uid)">
+				</select>
+			</td-->
 			<td>
-        <button class="ui button" ng-click="changeScope()">Change scope</button>
-        &nbsp;&nbsp;&nbsp;
-        <button id="subscription" class="ui disabled button" ng-click="unsubscribe('{{sub.properties["subscription:document_id"]}}')">Unsubscribe</button>
+        <!--button id="scope-{{sub.uid}}" class="ui button" ng-click="changeScope(sub.uid)">Change scope</button>
+        &nbsp;&nbsp;&nbsp;-->
+        <button id="subscription-{{sub.uid}}" class="ui red button" ng-click="unsubscribe(sub.uid)">Unsubscribe</button>
 			</td>
 		</tr>
 	</tbody>

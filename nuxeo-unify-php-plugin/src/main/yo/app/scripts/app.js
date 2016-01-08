@@ -17,6 +17,17 @@ angular
     'nuxeo',
     'angular-toArrayFilter'
   ])
+  .filter('split', function() {
+        return function(input, splitChar, splitIndex) {
+            // do some bounds checking here to ensure it has that index
+            return input.split(splitChar)[splitIndex];
+        }
+  })
+  .filter('endsWith', function() {
+        return function(str, suffix) {
+            return str.indexOf(suffix, str.length - suffix.length) !== -1;
+        }
+  })
   .service('nuxeoClient', function(nuxeoClientFactory) {
 	  var client = nuxeoClientFactory({
         // Comment lines below to use prod instance
@@ -66,7 +77,7 @@ angular
           controller: 'SearchProductsCtrl',
        	  controllerAs: 'searchproducts'
       })
-      .when('/currentportfolio/:productfamily', {
+      .when('/currentportfolio/:code', {
           templateUrl: 'views/currentportfolio.html',
           controller: 'CurrentPortfolioCtrl',
        	  controllerAs: 'currentportfolio'
@@ -131,3 +142,57 @@ angular
         return filtered;
     };
 }]);
+
+
+function downloadPDF(url) {
+  document.location.href=url;
+}
+
+
+function download(uid, fileName){
+  var url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
+  document.location.href=url;
+}
+
+function showHide(groupId){
+  $('td[group-id="'+groupId+'"]').each(function() {
+    if($(this).is(':visible')){
+      if($(this).children("a[class='ng-hide']").length == 0){
+        if($(this).children("a").children("i[class='dropdown icon']").length>0){
+          $(this).children("a").children("i[class='dropdown icon']").removeClass("dropdown icon").addClass("caret right icon");
+        }else{
+          $(this).children("a").children("i[class='caret right icon']").removeClass("caret right icon").addClass("dropdown icon");
+        }
+      }else{
+        $(this).fadeOut('fast');
+      }
+    }else {
+      $(this).fadeIn('fast');
+    }
+  });
+}
+
+function switchLanguage(language){
+  $('div[language]').each(function() {
+      $(this).hide();
+  });
+  $('div[language="'+language+'"]').each(function() {
+      $(this).show();
+  });
+
+  $("img[class='ui mini image']").each(function(){
+    if($(this).attr("id") != language){
+      $(this).removeClass("ui mini image").addClass("disabled ui mini image");
+    }
+  });
+
+  $("img[class='disabled ui mini image']").each(function(){
+    if($(this).attr("id") == language){
+      $(this).removeClass("disabled");
+    }
+  });
+}
+
+function endsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
+}

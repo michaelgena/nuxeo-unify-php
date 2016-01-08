@@ -67,5 +67,5 @@ angular.module('frontApp')
   }
 
 	nuxeoClient.request('query/QueryForProductDocuments?queryParams='+$routeParams.pid).schema('file').get().then(callbackLists, errorLists);
-	nuxeoClient.operation("AKENEO.QueryAndFetch").param("query", $routeParams.pid).execute().then(callbackAkeneo);
+	nuxeoClient.operation("AKENEO.QueryAndFetch").param("pid", $routeParams.pid).param("type", "").param("object_type", "").param("code", "").param("category_code", "").param("version_to_product", "").execute().then(callbackAkeneo);
 });

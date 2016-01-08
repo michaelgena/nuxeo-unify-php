@@ -17,9 +17,11 @@ angular.module('frontApp')
   $scope.sortReverse  = false;  // set the default sort order
   $scope.searchProduct   = '';     // set the default search/filter term
   $scope.selectedAll = false;
+  $scope.notificationScopes = {};
+  $scope.notificationDefaultScope = '';
 
   $scope.checkAll = function () {
-       $("#subscription").html("Subscribe for document change notification").removeClass("positive");
+       $("#subscription").html("Subscribe for update notification").removeClass("positive");
        if ($scope.selectedAll) {
           $scope.selectedAll = true;
           $("#subscription").removeClass("disabled");
@@ -33,7 +35,7 @@ angular.module('frontApp')
    };
 
    $scope.check = function () {
-        $("#subscription").html("Subscribe for document change notification").removeClass;
+        $("#subscription").html("Subscribe for update notification").removeClass;
         var hasAtLeastOneChecked = false;
         angular.forEach($scope.products, function (product) {
             if (product.selected) {
@@ -47,15 +49,21 @@ angular.module('frontApp')
         }
     };
 
+    $scope.selectScope = function () {
+        $('.ui.modal').modal('show');
+    };
+
     $scope.subscribe = function () {
         angular.forEach($scope.products, function (product) {
             if (product.selected) {
-              console.log(product.attributes.sku);
+
               //Call the REST API here
-              $("#subscription").html("Subscribed").addClass("positive");
+              nuxeoClient.operation("javascript.subscribe").param("sku", product.attributes.sku).param("title", product.attributes.product_version_name).param("user", $cookies.get('login')).param("scope", $scope.notificationScope).execute();
             }
         });
+        $("#subscription").html("Subscribed").addClass("positive");
     };
+
 
   // Main callback
   function callbackGPA(result) {
@@ -66,7 +74,14 @@ angular.module('frontApp')
     //console.log("Login:" +$cookies.get("login"));
   }
 
+  function callbackNotifScope(result) {
+    $scope.notificationScopes = result.entries;
+  }
+
   // Entry point
   //nuxeoClient.operation("GPA.QueryAndFetch").param("query", "Z001KYJF").execute(callbackGPA);
-  nuxeoClient.operation("AKENEO.QueryAndFetch").param("query", "").execute().then(callbackGPA);
+  nuxeoClient.operation("AKENEO.QueryAndFetch").param("pid", "").param("type", "").param("object_type", "").param("code", "").param("category_code", "").param("version_to_product", "").execute().then(callbackGPA);
+
+  nuxeoClient.request('directory/Notification_Scope').get().then(callbackNotifScope);
+
 });

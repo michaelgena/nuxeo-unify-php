@@ -28,7 +28,7 @@ import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.nuxeo.unify.entitlement.Category;
-import org.nuxeo.unify.entitlement.SOAPClientSAAJ.User;
+import org.nuxeo.unify.entitlement.User;
 
 
 public class EntitlementHelper {

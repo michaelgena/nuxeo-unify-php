@@ -1,8 +1,0 @@
-<component name="org.nuxeo.unify.php.operations.QueryAndFetchNuxeo">
-
-  <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent"
-    point="operations" >
-      <operation class="org.nuxeo.unify.php.operations.QueryAndFetchNuxeo" />
-   </extension>
-    
-</component>

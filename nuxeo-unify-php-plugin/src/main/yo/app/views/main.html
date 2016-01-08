@@ -4,7 +4,7 @@
   <input type="text" ng-model="searchProduct">
   <button class="ui button">Filter</button>
   &nbsp;&nbsp;&nbsp;
-  <button id="subscription" class="ui disabled button" ng-click="subscribe()">Subscribe for document change notification</button>
+  <button id="subscription" class="ui disabled button" ng-click="selectScope()">Subscribe for update notification</button>
 </div>
 <table class="ui striped table">
   <thead>
@@ -38,5 +38,26 @@
 <div ng-show="!products.length">
   <div id="main-message" class="ui visible message">
     <p>No products to display.</p>
+  </div>
+</div>
+
+<div class="ui modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Please select your subscription scope
+  </div>
+  <div>
+    {{notificationScope}}
+
+    <select class="ui dropdown" ng-model="notificationScope" ng-init="notificationScope=notificationDefaultScope" ng-options="notificationScope.properties['id'] as notificationScope.properties['label'] for notificationScope in notificationScopes"></select>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">
+      Cancel
+    </div>
+    <div class="ui positive right labeled icon button" ng-click="subscribe()">
+      Validate
+      <i class="checkmark icon"></i>
+    </div>
   </div>
 </div>

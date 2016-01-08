@@ -17,51 +17,6 @@
     <style>
         body { padding:10px; }
     </style>
-    <script type="text/javascript">
-      function download(uid, fileName){
-        url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
-        document.location.href=url;
-      }
-
-      function showHide(groupId){
-        $('td[group-id="'+groupId+'"]').each(function() {
-          if($(this).is(':visible')){
-            if($(this).children("a[class='ng-hide']").length == 0){
-              if($(this).children("a").children("i[class='dropdown icon']").length>0){
-                $(this).children("a").children("i[class='dropdown icon']").removeClass("dropdown icon").addClass("caret right icon");
-              }else{
-                $(this).children("a").children("i[class='caret right icon']").removeClass("caret right icon").addClass("dropdown icon");
-              }
-            }else{
-              $(this).fadeOut('fast');
-            }
-          }else {
-            $(this).fadeIn('fast');
-          }
-        });
-      }
-
-      function switchLanguage(language){
-    		$('div[language]').each(function() {
-    				$(this).hide();
-    		});
-    		$('div[language="'+language+'"]').each(function() {
-    				$(this).show();
-    		});
-
-        $("img[class='ui mini image']").each(function(){
-          if($(this).attr("id") != language){
-            $(this).removeClass("ui mini image").addClass("disabled ui mini image");
-          }
-        });
-
-        $("img[class='disabled ui mini image']").each(function(){
-          if($(this).attr("id") == language){
-            $(this).removeClass("disabled");
-          }
-        });
-    	}
-    </script>
   </head>
   <body ng-app="frontApp">
 
@@ -108,6 +63,7 @@
         <script src="scripts/controllers/salescirculars.js"></script>
         <script src="scripts/controllers/searchproducts.js"></script>
         <script src="scripts/controllers/currentportfolio.js"></script>
+        <script src="scripts/controllers/subscriptions.js"></script>
         <!-- endbuild -->
 
     </body>
