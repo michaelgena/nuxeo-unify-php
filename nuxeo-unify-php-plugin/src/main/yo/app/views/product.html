@@ -46,9 +46,7 @@
 			<a class="item" data-tab="operate">Operate</a>
 			<a class="item" data-tab="improve">Improve</a>
 	  </div>
-	  <div class="ui bottom attached tab segment" data-tab="marketing">Marketing</div>
-	  <div class="ui bottom attached tab segment" data-tab="enabling">Enabling</div>
-	  <div class="ui bottom attached active tab segment" data-tab="presales">
+	  <div class="ui bottom attached tab segment" data-tab="marketing">
       <table class="ui striped table">
         <thead>
           <tr>
@@ -58,14 +56,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']']">
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Marketing')">
             <td><span ng-show="doc.group_by_CHANGED">{{doc.title}}</span></td>
             <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
             <td>
               <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
               <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
-              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);"><i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i><i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i></a>
-              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);"><i title="pdf" class="file pdf outline icon"></i></a>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
             </td>
           </tr>
         </tbody>
@@ -76,11 +80,244 @@
         </div>
       </div>
     </div>
-		<div class="ui bottom attached tab segment" data-tab="evaluate">Evaluate</div>
-		<div class="ui bottom attached tab segment" data-tab="design">Design</div>
-		<div class="ui bottom attached tab segment" data-tab="implement">Implement</div>
-		<div class="ui bottom attached tab segment" data-tab="operate">Operate</div>
-		<div class="ui bottom attached tab segment" data-tab="improve">Improve</div>
+	  <div class="ui bottom attached tab segment" data-tab="enabling">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Enabling')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+	  <div class="ui bottom attached active tab segment" data-tab="presales">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Presales')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+		<div class="ui bottom attached tab segment" data-tab="evaluate">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Evaluate')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+		<div class="ui bottom attached tab segment" data-tab="design">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Design')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+		<div class="ui bottom attached tab segment" data-tab="implement">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Implement')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+		<div class="ui bottom attached tab segment" data-tab="operate">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Operate')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
+		<div class="ui bottom attached tab segment" data-tab="improve">
+      <table class="ui striped table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Langages - Versions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="doc in documents  | orderBy:'title' | groupBy:['properties[\'Document_Attributes:Group_Id\']'] | filter:typeMatcher('Improve')">
+            <td><span ng-show="doc.group_by_CHANGED">{{::doc.title}}</span></td>
+            <td><span ng-show="doc.group_by_CHANGED"><label ng-bind="formatDate(doc.lastModified) |  date:'yyyy-dd-MM'"></label></span></td>
+            <td>
+              <i ng-show="doc.properties['Document_Attributes:Language'] != 'en-US' && doc.properties['Document_Attributes:Language'] != 'en-GB'" title="{{::doc.properties['Document_Attributes:Language']}}" class="{{::doc.properties['Document_Attributes:Language'] | split:'-':0}} flag"></i>
+              <i ng-show="doc.properties['Document_Attributes:Language'] == 'en-US' ||  doc.properties['Document_Attributes:Language'] == 'en-GB'" title="English" class="us flag"></i>
+              <a ng:href="javascript:download('{{::doc.uid}}', '{{::doc.properties['file:filename']}}');void(0);">
+                <i title="pptx" ng-show="{{::doc.properties['file:filename'] | endsWith:'pptx' }}" class="file powerpoint outline icon"></i>
+                <i title="zip" ng-show="{{::doc.properties['file:filename'] | endsWith:'zip' }}" class="file archive outline icon"></i>
+                <i title="pdf" ng-show="{{::doc.properties['file:filename'] | endsWith:'pdf' }}" class="file pdf outline icon"></i>
+              </a>
+              <a ng-show="{{::doc.properties['Document_Attributes:PDF'] != null}}" ng:href="javascript:downloadPDF('{{::doc.properties['Document_Attributes:PDF'].data}}');void(0);">
+                <i title="pdf" class="file pdf outline icon"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="!documents.length">
+        <div id="main-message" class="ui visible message">
+          <p>No documents to display.</p>
+        </div>
+      </div>
+    </div>
 </div>
 <div class="ui bottom attached tab segment" data-tab="third">
 		<h5 class="ui header">FAQs</h5>

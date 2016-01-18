@@ -6,12 +6,6 @@ angular.module('frontApp')
 	// Init vars
 	$scope.product = {};
 	$scope.documents = {};
-	/*$scope.helpers = {
-	    download: function(uid, fileName) {
-	      url = "../../../nuxeo/nxfile/default/"+uid+"/file:content/"+fileName;
-	      document.location.href=url;
-	  }
-	};*/
 
 	$scope.formatDate = function(date){
   	var dateOut = new Date(date);
@@ -23,27 +17,16 @@ angular.module('frontApp')
     return $sce.trustAsHtml(decoded);
   };
 
+	$scope.typeMatcher = function(typeFilter) {
+  	return function(doc) {
+			//console.log("result:"+typeFilter+" "+doc.properties['Document_Attributes:Document_Mapping']);
+    	return doc.properties['Document_Attributes:Document_Mapping'] === typeFilter;
+	  }
+	};
+
 	$("#loader").hide("");
 
-	$('.ui.top.attached.tabular.menu .item')
-  .tab({
-    cache: false,
-    // faking API request
-    apiSettings: {
-      loadingDuration : 300,
-      mockResponse    : function(settings) {
-        var response = {
-          first  : 'AJAX Tab One',
-          second : 'AJAX Tab Two',
-          third  : 'AJAX Tab Three'
-        };
-        return response[settings.urlData.tab];
-      }
-    },
-    context : 'parent',
-    auto    : true,
-    path    : '/'
-  });
+	$('.ui.top.attached.tabular.menu .item').tab();
 
 	$('.ui.bottom.attached.tabular.menu .item').tab();
 	//query/QueryForProductDocuments?queryParams=515258
